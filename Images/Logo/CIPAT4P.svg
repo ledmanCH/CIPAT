@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <g fill="none" stroke="#1d1d1b" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <!-- antennae -->
+    <path d="M232 112 C222 80 200 60 172 52"/>
+    <path d="M280 112 C290 80 312 60 340 52"/>
+    <!-- legs, left -->
+    <path d="M196 196 L150 176 L120 132"/>
+    <path d="M186 262 L128 262 L92 236"/>
+    <path d="M192 330 L140 360 L120 412"/>
+    <!-- legs, right -->
+    <path d="M316 196 L362 176 L392 132"/>
+    <path d="M326 262 L384 262 L420 236"/>
+    <path d="M320 330 L372 360 L392 412"/>
+  </g>
+  <!-- antenna tips -->
+  <g stroke="#1d1d1b" stroke-width="14">
+    <circle cx="166" cy="50" r="17" fill="#f6c343"/>
+    <circle cx="346" cy="50" r="17" fill="#f6c343"/>
+  </g>
+  <g stroke="#1d1d1b" stroke-width="18" stroke-linejoin="round">
+    <!-- abdomen / wing cases -->
+    <path d="M178 214 H334 V318 C334 392 300 452 256 452 C212 452 178 392 178 318 Z" fill="#3fa9d6"/>
+    <!-- thorax -->
+    <rect x="184" y="156" width="144" height="66" rx="30" fill="#2b5c8a"/>
+    <!-- head -->
+    <path d="M206 158 C206 120 228 100 256 100 C284 100 306 120 306 158 Z" fill="#2b5c8a"/>
+  </g>
+  <!-- light shade on the left wing case -->
+  <path d="M196 236 V318 C196 370 214 412 238 430" fill="none" stroke="#7fcbea" stroke-width="12" stroke-linecap="round"/>
+  <!-- wing split -->
+  <path d="M256 222 V452" stroke="#1d1d1b" stroke-width="16" stroke-linecap="round"/>
+  <!-- { } on the wing cases -->
+  <g fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M226 278 C210 278 214 300 214 310 C214 318 208 322 202 322 C208 322 214 326 214 334 C214 344 210 366 226 366"/>
+    <path d="M286 278 C302 278 298 300 298 310 C298 318 304 322 310 322 C304 322 298 326 298 334 C298 344 302 366 286 366"/>
+  </g>
+  <!-- eyes -->
+  <g fill="#ffffff" stroke="#1d1d1b" stroke-width="8">
+    <circle cx="236" cy="132" r="11"/>
+    <circle cx="276" cy="132" r="11"/>
+  </g>
+</svg>

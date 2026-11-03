@@ -1,0 +1,1544 @@
+object frmMain: TfrmMain
+  Left = 200
+  Height = 860
+  Top = 80
+  Width = 1500
+  Caption = 'CIPAT - Cockpit ITSM Public API Toolkit'
+  ClientHeight = 860
+  ClientWidth = 1500
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object pnlTop: TPanel
+    Left = 0
+    Height = 40
+    Top = 0
+    Width = 1500
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 40
+    ClientWidth = 1500
+    TabOrder = 0
+    object lblFolder: TLabel
+      Left = 8
+      Height = 15
+      Top = 13
+      Width = 65
+      Caption = 'JSON folder:'
+    end
+    object edFolder: TEdit
+      Left = 112
+      Height = 23
+      Top = 9
+      Width = 1338
+      Anchors = [akTop, akLeft, akRight]
+      TabOrder = 0
+      OnEditingDone = edFolderEditingDone
+    end
+    object btnBrowse: TButton
+      Left = 1456
+      Height = 23
+      Top = 9
+      Width = 36
+      Anchors = [akTop, akRight]
+      Caption = '...'
+      TabOrder = 1
+      OnClick = btnBrowseClick
+    end
+  end
+  object pcMain: TPageControl
+    Left = 0
+    Height = 764
+    Top = 40
+    Width = 1500
+    ActivePage = tsApi
+    Align = alClient
+    TabIndex = 1
+    TabOrder = 1
+    object tsDiff: TTabSheet
+      Caption = 'Differences'
+      ClientHeight = 736
+      ClientWidth = 1492
+      object pnlDiff: TPanel
+        Left = 0
+        Height = 76
+        Top = 0
+        Width = 1492
+        Align = alTop
+        BevelOuter = bvNone
+        ClientHeight = 76
+        ClientWidth = 1492
+        TabOrder = 0
+        object lblOld: TLabel
+          Left = 8
+          Height = 15
+          Top = 13
+          Width = 22
+          Caption = 'Old:'
+        end
+        object cbOld: TComboBox
+          Left = 104
+          Height = 23
+          Top = 9
+          Width = 150
+          DropDownCount = 30
+          ItemHeight = 15
+          Style = csDropDownList
+          TabOrder = 0
+        end
+        object lblNew: TLabel
+          Left = 272
+          Height = 15
+          Top = 13
+          Width = 27
+          Caption = 'New:'
+        end
+        object cbNew: TComboBox
+          Left = 342
+          Height = 23
+          Top = 9
+          Width = 150
+          DropDownCount = 30
+          ItemHeight = 15
+          Style = csDropDownList
+          TabOrder = 1
+        end
+        object btnCompare: TBitBtn
+          Left = 508
+          Height = 25
+          Top = 8
+          Width = 110
+          Caption = 'Compare'
+          TabOrder = 2
+          OnClick = btnCompareClick
+        end
+        object btnHistory: TBitBtn
+          Left = 628
+          Height = 25
+          Top = 8
+          Width = 160
+          Caption = 'Full history...'
+          TabOrder = 3
+          OnClick = btnHistoryClick
+        end
+        object btnExport: TBitBtn
+          Left = 798
+          Height = 25
+          Top = 8
+          Width = 110
+          Caption = 'Export...'
+          Enabled = False
+          TabOrder = 4
+          OnClick = btnExportClick
+        end
+        object chkIgnoreVersion: TCheckBox
+          Left = 104
+          Height = 19
+          Top = 46
+          Width = 117
+          Caption = 'Ignore info.version'
+          Checked = True
+          State = cbChecked
+          TabOrder = 5
+          OnClick = chkOptionClick
+        end
+        object chkIgnoreTexts: TCheckBox
+          Left = 282
+          Height = 19
+          Top = 46
+          Width = 205
+          Caption = 'Ignore texts (description, summary)'
+          TabOrder = 6
+          OnClick = chkOptionClick
+        end
+        object chkIgnoreCase: TCheckBox
+          Left = 582
+          Height = 19
+          Top = 46
+          Width = 153
+          Caption = 'Ignore schema / $ref case'
+          TabOrder = 7
+          OnClick = chkOptionClick
+        end
+        object lblFilter: TLabel
+          Left = 1103
+          Height = 15
+          Top = 48
+          Width = 29
+          Anchors = [akTop, akRight]
+          Caption = 'Filter:'
+        end
+        object edFilter: TEdit
+          Left = 1142
+          Height = 23
+          Top = 44
+          Width = 342
+          Anchors = [akTop, akRight]
+          TabOrder = 8
+          OnChange = edFilterChange
+        end
+      end
+      object lvDiff: TListView
+        Left = 0
+        Height = 444
+        Top = 76
+        Width = 1492
+        Align = alClient
+        Columns = <        
+          item
+            Caption = 'Type'
+            Width = 95
+          end        
+          item
+            Caption = 'Category'
+            Width = 85
+          end        
+          item
+            Caption = 'Element'
+            Width = 300
+          end        
+          item
+            Caption = 'Path'
+            Width = 300
+          end        
+          item
+            Caption = 'Old value'
+            Width = 240
+          end        
+          item
+            Caption = 'New value'
+            Width = 240
+          end>
+        GridLines = True
+        HideSelection = False
+        ReadOnly = True
+        RowSelect = True
+        TabOrder = 1
+        ViewStyle = vsReport
+        OnCustomDrawItem = lvDiffCustomDrawItem
+        OnSelectItem = lvDiffSelectItem
+      end
+      object splDetail: TSplitter
+        Cursor = crVSplit
+        Left = 0
+        Height = 5
+        Top = 520
+        Width = 1492
+        Align = alBottom
+        ResizeAnchor = akBottom
+      end
+      inline memDetail: TSynEdit
+        Left = 0
+        Height = 211
+        Top = 525
+        Width = 1492
+        Align = alBottom
+        Font.Height = -13
+        Font.Name = 'Consolas'
+        Font.Pitch = fpFixed
+        Font.Quality = fqNonAntialiased
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 2
+        Gutter.Width = 55
+        Gutter.MouseActions = <>
+        RightGutter.Width = 0
+        RightGutter.MouseActions = <>
+        Highlighter = synJSON
+        Keystrokes = <>
+        MouseActions = <>
+        MouseTextActions = <>
+        MouseSelActions = <>
+        Options = [eoAutoIndent, eoGroupUndo, eoHideRightMargin, eoScrollPastEol, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+        VisibleSpecialChars = [vscSpace, vscTabAtLast]
+        ReadOnly = True
+        ScrollBars = ssAutoBoth
+        SelectedColor.BackPriority = 50
+        SelectedColor.ForePriority = 50
+        SelectedColor.FramePriority = 50
+        SelectedColor.BoldPriority = 50
+        SelectedColor.ItalicPriority = 50
+        SelectedColor.UnderlinePriority = 50
+        SelectedColor.StrikeOutPriority = 50
+        BracketHighlightStyle = sbhsBoth
+        BracketMatchColor.Background = clNone
+        BracketMatchColor.Foreground = clNone
+        BracketMatchColor.Style = [fsBold]
+        FoldedCodeColor.Background = clNone
+        FoldedCodeColor.Foreground = clGray
+        FoldedCodeColor.FrameColor = clGray
+        MouseLinkColor.Background = clNone
+        MouseLinkColor.Foreground = clBlue
+        LineHighlightColor.Background = clNone
+        LineHighlightColor.Foreground = clNone
+        TabWidth = 2
+        inline SynLeftGutterPartList1: TSynGutterPartList
+          object SynGutterMarks1: TSynGutterMarks
+            Width = 24
+            MouseActions = <>
+            MaxExtraMarksColums = 0
+            Options = [sgmoDeDuplicateMarksOnOverflow]
+            MarkupInfo.Background = clBtnFace
+            MarkupInfo.Foreground = clNone
+          end
+          object SynGutterLineNumber1: TSynGutterLineNumber
+            Width = 15
+            MouseActions = <>
+            MarkupInfo.Background = clBtnFace
+            MarkupInfo.Foreground = clNone
+            DigitCount = 2
+            ShowOnlyLineNumbersMultiplesOf = 1
+            ZeroStart = False
+            LeadingZeros = False
+          end
+          object SynGutterChanges1: TSynGutterChanges
+            Width = 4
+            MouseActions = <>
+            ModifiedColor = 59900
+            SavedColor = clGreen
+            MarkupInfo.Background = clNone
+            MarkupInfo.Foreground = clGreen
+            MarkupInfo.FrameColor = 59900
+          end
+          object SynGutterSeparator1: TSynGutterSeparator
+            Width = 2
+            MouseActions = <>
+            MarkupInfo.Background = clWhite
+            MarkupInfo.Foreground = clGray
+          end
+          object SynGutterCodeFolding1: TSynGutterCodeFolding
+            MouseActions = <>
+            MarkupInfo.Background = clNone
+            MarkupInfo.Foreground = clGray
+            MouseActionsExpanded = <>
+            MouseActionsCollapsed = <>
+          end
+        end
+      end
+    end
+    object tsApi: TTabSheet
+      Caption = 'API'
+      ClientHeight = 736
+      ClientWidth = 1492
+      object pnlApiLeft: TPanel
+        Left = 0
+        Height = 736
+        Top = 0
+        Width = 520
+        Align = alLeft
+        BevelOuter = bvNone
+        ClientHeight = 736
+        ClientWidth = 520
+        TabOrder = 0
+        object pnlApiTop: TPanel
+          Left = 0
+          Height = 86
+          Top = 0
+          Width = 520
+          Align = alTop
+          BevelOuter = bvNone
+          ClientHeight = 86
+          ClientWidth = 520
+          TabOrder = 0
+          object lblGenVersion: TLabel
+            Left = 6
+            Height = 15
+            Top = 10
+            Width = 41
+            Caption = 'Version:'
+          end
+          object cbGenVersion: TComboBox
+            Left = 70
+            Height = 23
+            Top = 6
+            Width = 150
+            DropDownCount = 30
+            ItemHeight = 15
+            Style = csDropDownList
+            TabOrder = 1
+            OnChange = cbGenVersionChange
+          end
+          object btnUncheckAll: TBitBtn
+            Left = 380
+            Height = 25
+            Top = 4
+            Width = 134
+            Anchors = [akTop, akRight]
+            Caption = 'Uncheck all'
+            TabOrder = 2
+            OnClick = btnUncheckAllClick
+          end
+          object edTreeFilter: TEdit
+            Left = 6
+            Height = 23
+            Top = 34
+            Width = 508
+            Anchors = [akTop, akLeft, akRight]
+            TabOrder = 0
+            TextHint = 'Filter (path, method, tag, description)'
+            OnChange = edTreeFilterChange
+          end
+          object chkGenSelected: TCheckBox
+            Left = 6
+            Height = 19
+            Top = 62
+            Width = 92
+            Caption = 'Selection only'
+            TabOrder = 3
+            OnClick = edTreeFilterChange
+          end
+          object chkGenSupported: TCheckBox
+            Left = 170
+            Height = 19
+            Top = 62
+            Width = 114
+            Caption = 'Hide unsupported'
+            TabOrder = 5
+            OnClick = edTreeFilterChange
+          end
+          object chkGenDeprecated: TCheckBox
+            Left = 348
+            Height = 19
+            Top = 62
+            Width = 117
+            Caption = 'Hide DEPRECATED'
+            TabOrder = 4
+            OnClick = edTreeFilterChange
+          end
+        end
+        object vstEndpoints: TLazVirtualStringTree
+          Left = 0
+          Height = 650
+          Top = 86
+          Width = 520
+          Align = alClient
+          Header.AutoSizeIndex = 0
+          Header.Columns = <>
+          Header.MainColumn = -1
+          TabOrder = 1
+          OnChange = vstEndpointsChange
+          OnChecked = vstEndpointsChecked
+          OnEditing = vstEndpointsEditing
+          OnFreeNode = vstEndpointsFreeNode
+          OnGetText = vstEndpointsGetText
+          OnPaintText = vstEndpointsPaintText
+          OnNewText = vstEndpointsNewText
+        end
+      end
+      object splApi: TSplitter
+        Left = 520
+        Height = 736
+        Top = 0
+        Width = 5
+      end
+      object pcApi: TPageControl
+        Left = 525
+        Height = 736
+        Top = 0
+        Width = 967
+        ActivePage = tsDetail
+        Align = alClient
+        TabIndex = 0
+        TabOrder = 1
+        object tsDetail: TTabSheet
+          Caption = 'Detail'
+          ClientHeight = 708
+          ClientWidth = 959
+          object pnlDocTop: TPanel
+            Left = 0
+            Height = 70
+            Top = 0
+            Width = 959
+            Align = alTop
+            BevelOuter = bvNone
+            ClientHeight = 70
+            ClientWidth = 959
+            TabOrder = 0
+            object lblDocTitle: TLabel
+              Left = 6
+              Height = 17
+              Top = 4
+              Width = 947
+              Anchors = [akTop, akLeft, akRight]
+              AutoSize = False
+              Caption = 'Select an endpoint in the tree'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object lblDocDesc: TLabel
+              Left = 6
+              Height = 44
+              Top = 24
+              Width = 947
+              Anchors = [akTop, akLeft, akRight]
+              AutoSize = False
+              ParentShowHint = False
+              ShowHint = True
+              WordWrap = True
+            end
+          end
+          object sgDocParams: TStringGrid
+            Left = 0
+            Height = 150
+            Top = 70
+            Width = 959
+            Align = alTop
+            Columns = <            
+              item
+                Title.Caption = 'Parameter'
+                Width = 160
+              end            
+              item
+                Title.Caption = 'In'
+                Width = 50
+              end            
+              item
+                Title.Caption = 'Type'
+                Width = 130
+              end            
+              item
+                Title.Caption = 'Required'
+                Width = 64
+              end            
+              item
+                Title.Caption = 'Description'
+                Width = 540
+              end>
+            FixedCols = 0
+            Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goRowSelect, goSmoothScroll]
+            RowCount = 1
+            TabOrder = 1
+          end
+          object pnlDocReq: TPanel
+            Left = 0
+            Height = 488
+            Top = 220
+            Width = 440
+            Align = alLeft
+            BevelOuter = bvNone
+            ClientHeight = 488
+            ClientWidth = 440
+            TabOrder = 2
+            object lblDocReq: TLabel
+              Left = 4
+              Height = 20
+              Top = 0
+              Width = 436
+              Align = alTop
+              AutoSize = False
+              BorderSpacing.Left = 4
+              Caption = 'Request body (example)'
+              Font.Style = [fsBold]
+              Layout = tlCenter
+              ParentFont = False
+            end
+            inline memDocReq: TSynEdit
+              Left = 0
+              Height = 468
+              Top = 20
+              Width = 440
+              Align = alClient
+              Font.Height = -13
+              Font.Name = 'Consolas'
+              Font.Pitch = fpFixed
+              Font.Quality = fqNonAntialiased
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Gutter.Width = 55
+              Gutter.MouseActions = <>
+              RightGutter.Width = 0
+              RightGutter.MouseActions = <>
+              Highlighter = synJSON
+              Keystrokes = <>
+              MouseActions = <>
+              MouseTextActions = <>
+              MouseSelActions = <>
+              Options = [eoAutoIndent, eoGroupUndo, eoHideRightMargin, eoScrollPastEol, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+              VisibleSpecialChars = [vscSpace, vscTabAtLast]
+              ReadOnly = True
+              ScrollBars = ssAutoBoth
+              SelectedColor.BackPriority = 50
+              SelectedColor.ForePriority = 50
+              SelectedColor.FramePriority = 50
+              SelectedColor.BoldPriority = 50
+              SelectedColor.ItalicPriority = 50
+              SelectedColor.UnderlinePriority = 50
+              SelectedColor.StrikeOutPriority = 50
+              BracketHighlightStyle = sbhsBoth
+              BracketMatchColor.Background = clNone
+              BracketMatchColor.Foreground = clNone
+              BracketMatchColor.Style = [fsBold]
+              FoldedCodeColor.Background = clNone
+              FoldedCodeColor.Foreground = clGray
+              FoldedCodeColor.FrameColor = clGray
+              MouseLinkColor.Background = clNone
+              MouseLinkColor.Foreground = clBlue
+              LineHighlightColor.Background = clNone
+              LineHighlightColor.Foreground = clNone
+              TabWidth = 2
+              inline SynLeftGutterPartList1: TSynGutterPartList
+                object SynGutterMarks1: TSynGutterMarks
+                  Width = 24
+                  MouseActions = <>
+                  MaxExtraMarksColums = 0
+                  Options = [sgmoDeDuplicateMarksOnOverflow]
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                end
+                object SynGutterLineNumber1: TSynGutterLineNumber
+                  Width = 15
+                  MouseActions = <>
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                  DigitCount = 2
+                  ShowOnlyLineNumbersMultiplesOf = 1
+                  ZeroStart = False
+                  LeadingZeros = False
+                end
+                object SynGutterChanges1: TSynGutterChanges
+                  Width = 4
+                  MouseActions = <>
+                  ModifiedColor = 59900
+                  SavedColor = clGreen
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGreen
+                  MarkupInfo.FrameColor = 59900
+                end
+                object SynGutterSeparator1: TSynGutterSeparator
+                  Width = 2
+                  MouseActions = <>
+                  MarkupInfo.Background = clWhite
+                  MarkupInfo.Foreground = clGray
+                end
+                object SynGutterCodeFolding1: TSynGutterCodeFolding
+                  MouseActions = <>
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGray
+                  MouseActionsExpanded = <>
+                  MouseActionsCollapsed = <>
+                end
+              end
+            end
+          end
+          object splDoc: TSplitter
+            Left = 440
+            Height = 488
+            Top = 220
+            Width = 5
+          end
+          object pnlDocResp: TPanel
+            Left = 445
+            Height = 488
+            Top = 220
+            Width = 514
+            Align = alClient
+            BevelOuter = bvNone
+            ClientHeight = 488
+            ClientWidth = 514
+            TabOrder = 3
+            object lblDocResp: TLabel
+              Left = 4
+              Height = 20
+              Top = 0
+              Width = 510
+              Align = alTop
+              AutoSize = False
+              BorderSpacing.Left = 4
+              Caption = 'Response (example)'
+              Font.Style = [fsBold]
+              Layout = tlCenter
+              ParentFont = False
+            end
+            inline memDocResp: TSynEdit
+              Left = 0
+              Height = 468
+              Top = 20
+              Width = 514
+              Align = alClient
+              Font.Height = -13
+              Font.Name = 'Consolas'
+              Font.Pitch = fpFixed
+              Font.Quality = fqNonAntialiased
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Gutter.Width = 55
+              Gutter.MouseActions = <>
+              RightGutter.Width = 0
+              RightGutter.MouseActions = <>
+              Highlighter = synJSON
+              Keystrokes = <>
+              MouseActions = <>
+              MouseTextActions = <>
+              MouseSelActions = <>
+              Options = [eoAutoIndent, eoGroupUndo, eoHideRightMargin, eoScrollPastEol, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+              VisibleSpecialChars = [vscSpace, vscTabAtLast]
+              ReadOnly = True
+              ScrollBars = ssAutoBoth
+              SelectedColor.BackPriority = 50
+              SelectedColor.ForePriority = 50
+              SelectedColor.FramePriority = 50
+              SelectedColor.BoldPriority = 50
+              SelectedColor.ItalicPriority = 50
+              SelectedColor.UnderlinePriority = 50
+              SelectedColor.StrikeOutPriority = 50
+              BracketHighlightStyle = sbhsBoth
+              BracketMatchColor.Background = clNone
+              BracketMatchColor.Foreground = clNone
+              BracketMatchColor.Style = [fsBold]
+              FoldedCodeColor.Background = clNone
+              FoldedCodeColor.Foreground = clGray
+              FoldedCodeColor.FrameColor = clGray
+              MouseLinkColor.Background = clNone
+              MouseLinkColor.Foreground = clBlue
+              LineHighlightColor.Background = clNone
+              LineHighlightColor.Foreground = clNone
+              TabWidth = 2
+              inline SynLeftGutterPartList1: TSynGutterPartList
+                object SynGutterMarks1: TSynGutterMarks
+                  Width = 24
+                  MouseActions = <>
+                  MaxExtraMarksColums = 0
+                  Options = [sgmoDeDuplicateMarksOnOverflow]
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                end
+                object SynGutterLineNumber1: TSynGutterLineNumber
+                  Width = 15
+                  MouseActions = <>
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                  DigitCount = 2
+                  ShowOnlyLineNumbersMultiplesOf = 1
+                  ZeroStart = False
+                  LeadingZeros = False
+                end
+                object SynGutterChanges1: TSynGutterChanges
+                  Width = 4
+                  MouseActions = <>
+                  ModifiedColor = 59900
+                  SavedColor = clGreen
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGreen
+                  MarkupInfo.FrameColor = 59900
+                end
+                object SynGutterSeparator1: TSynGutterSeparator
+                  Width = 2
+                  MouseActions = <>
+                  MarkupInfo.Background = clWhite
+                  MarkupInfo.Foreground = clGray
+                end
+                object SynGutterCodeFolding1: TSynGutterCodeFolding
+                  MouseActions = <>
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGray
+                  MouseActionsExpanded = <>
+                  MouseActionsCollapsed = <>
+                end
+              end
+            end
+          end
+        end
+        object tsTest: TTabSheet
+          Caption = 'Test'
+          ClientHeight = 708
+          ClientWidth = 959
+          object gbConfig: TGroupBox
+            Left = 0
+            Height = 108
+            Top = 0
+            Width = 959
+            Align = alTop
+            Caption = 'Configuration'
+            ClientHeight = 88
+            ClientWidth = 955
+            TabOrder = 1
+            object chkSaaS: TCheckBox
+              Left = 8
+              Height = 19
+              Top = 6
+              Width = 155
+              Caption = 'SaaS (*.cockpit-itsm.com)'
+              Checked = True
+              State = cbChecked
+              TabOrder = 0
+              OnClick = TestConfigChange
+            end
+            object lblTenant: TLabel
+              Left = 200
+              Height = 15
+              Top = 8
+              Width = 73
+              Caption = 'Tenant / host:'
+            end
+            object edTenant: TEdit
+              Left = 296
+              Height = 23
+              Top = 4
+              Width = 230
+              TabOrder = 1
+              OnChange = TestConfigChange
+            end
+            object lblClientId: TLabel
+              Left = 544
+              Height = 15
+              Top = 8
+              Width = 44
+              Caption = 'ClientId:'
+            end
+            object edClientId: TEdit
+              Left = 640
+              Height = 23
+              Top = 4
+              Width = 230
+              TabOrder = 2
+              OnChange = TestConfigChange
+            end
+            object lblSecret: TLabel
+              Left = 544
+              Height = 15
+              Top = 38
+              Width = 66
+              Caption = 'ClientSecret:'
+            end
+            object edSecret: TEdit
+              Left = 640
+              Height = 23
+              Top = 34
+              Width = 230
+              EchoMode = emPassword
+              PasswordChar = '*'
+              TabOrder = 3
+              OnChange = TestConfigChange
+            end
+            object chkSaveSecret: TCheckBox
+              Left = 8
+              Height = 19
+              Top = 62
+              Width = 241
+              Caption = 'Remember the secret (plain text in the .ini)'
+              TabOrder = 4
+            end
+            object btnTestConn: TBitBtn
+              Left = 296
+              Height = 25
+              Top = 32
+              Width = 170
+              Caption = 'Test connection'
+              TabOrder = 5
+              OnClick = btnTestConnClick
+            end
+            object lblBaseUrl: TLabel
+              Left = 296
+              Height = 15
+              Top = 66
+              Width = 600
+              AutoSize = False
+              Caption = 'URL:'
+            end
+          end
+          object pnlTestEp: TPanel
+            Left = 0
+            Height = 44
+            Top = 108
+            Width = 959
+            Align = alTop
+            BevelOuter = bvNone
+            ClientHeight = 44
+            ClientWidth = 959
+            TabOrder = 0
+            object lblTestEndpoint: TLabel
+              Left = 6
+              Height = 17
+              Top = 4
+              Width = 947
+              Anchors = [akTop, akLeft, akRight]
+              AutoSize = False
+              Caption = 'Select an endpoint in the tree'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object lblTestInfo: TLabel
+              Left = 6
+              Height = 15
+              Top = 24
+              Width = 947
+              Anchors = [akTop, akLeft, akRight]
+              AutoSize = False
+              ParentShowHint = False
+              ShowHint = True
+            end
+          end
+          object pnlTestReq: TPanel
+            Left = 0
+            Height = 556
+            Top = 152
+            Width = 440
+            Align = alLeft
+            BevelOuter = bvNone
+            ClientHeight = 556
+            ClientWidth = 440
+            TabOrder = 2
+            object sgParams: TStringGrid
+              Left = 0
+              Height = 170
+              Top = 0
+              Width = 440
+              Align = alTop
+              Columns = <              
+                item
+                  ReadOnly = True
+                  Title.Caption = 'Parameter'
+                  Width = 150
+                end              
+                item
+                  ReadOnly = True
+                  Title.Caption = 'In'
+                  Width = 50
+                end              
+                item
+                  ReadOnly = True
+                  Title.Caption = 'Type'
+                  Width = 110
+                end              
+                item
+                  ReadOnly = True
+                  Title.Caption = 'Required'
+                  Width = 64
+                end              
+                item
+                  Title.Caption = 'Value'
+                  Width = 220
+                end>
+              FixedCols = 0
+              Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goEditing, goSmoothScroll]
+              RowCount = 1
+              TabOrder = 0
+            end
+            object pnlBodyBar: TPanel
+              Left = 0
+              Height = 34
+              Top = 170
+              Width = 440
+              Align = alTop
+              BevelOuter = bvNone
+              ClientHeight = 34
+              ClientWidth = 440
+              TabOrder = 1
+              object lblBody: TLabel
+                Left = 4
+                Height = 15
+                Top = 10
+                Width = 30
+                Caption = 'Body:'
+              end
+              object chkAllPages: TCheckBox
+                Left = 60
+                Height = 19
+                Top = 8
+                Width = 66
+                Caption = 'All pages'
+                TabOrder = 1
+              end
+              object btnSend: TBitBtn
+                Left = 310
+                Height = 25
+                Top = 5
+                Width = 126
+                Anchors = [akTop, akRight]
+                Caption = 'Send'
+                Font.Style = [fsBold]
+                ParentFont = False
+                TabOrder = 0
+                OnClick = btnSendClick
+              end
+            end
+            inline memBody: TSynEdit
+              Left = 0
+              Height = 352
+              Top = 204
+              Width = 440
+              Align = alClient
+              Font.Height = -13
+              Font.Name = 'Consolas'
+              Font.Pitch = fpFixed
+              Font.Quality = fqNonAntialiased
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 2
+              Gutter.Width = 55
+              Gutter.MouseActions = <>
+              RightGutter.Width = 0
+              RightGutter.MouseActions = <>
+              Highlighter = synJSON
+              Keystrokes = <>
+              MouseActions = <>
+              MouseTextActions = <>
+              MouseSelActions = <>
+              Options = [eoAutoIndent, eoGroupUndo, eoHideRightMargin, eoScrollPastEol, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+              VisibleSpecialChars = [vscSpace, vscTabAtLast]
+              ScrollBars = ssAutoBoth
+              SelectedColor.BackPriority = 50
+              SelectedColor.ForePriority = 50
+              SelectedColor.FramePriority = 50
+              SelectedColor.BoldPriority = 50
+              SelectedColor.ItalicPriority = 50
+              SelectedColor.UnderlinePriority = 50
+              SelectedColor.StrikeOutPriority = 50
+              BracketHighlightStyle = sbhsBoth
+              BracketMatchColor.Background = clNone
+              BracketMatchColor.Foreground = clNone
+              BracketMatchColor.Style = [fsBold]
+              FoldedCodeColor.Background = clNone
+              FoldedCodeColor.Foreground = clGray
+              FoldedCodeColor.FrameColor = clGray
+              MouseLinkColor.Background = clNone
+              MouseLinkColor.Foreground = clBlue
+              LineHighlightColor.Background = clNone
+              LineHighlightColor.Foreground = clNone
+              TabWidth = 2
+              inline SynLeftGutterPartList1: TSynGutterPartList
+                object SynGutterMarks1: TSynGutterMarks
+                  Width = 24
+                  MouseActions = <>
+                  MaxExtraMarksColums = 0
+                  Options = [sgmoDeDuplicateMarksOnOverflow]
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                end
+                object SynGutterLineNumber1: TSynGutterLineNumber
+                  Width = 15
+                  MouseActions = <>
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                  DigitCount = 2
+                  ShowOnlyLineNumbersMultiplesOf = 1
+                  ZeroStart = False
+                  LeadingZeros = False
+                end
+                object SynGutterChanges1: TSynGutterChanges
+                  Width = 4
+                  MouseActions = <>
+                  ModifiedColor = 59900
+                  SavedColor = clGreen
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGreen
+                  MarkupInfo.FrameColor = 59900
+                end
+                object SynGutterSeparator1: TSynGutterSeparator
+                  Width = 2
+                  MouseActions = <>
+                  MarkupInfo.Background = clWhite
+                  MarkupInfo.Foreground = clGray
+                end
+                object SynGutterCodeFolding1: TSynGutterCodeFolding
+                  MouseActions = <>
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGray
+                  MouseActionsExpanded = <>
+                  MouseActionsCollapsed = <>
+                end
+              end
+            end
+          end
+          object splTest: TSplitter
+            Left = 440
+            Height = 556
+            Top = 152
+            Width = 5
+          end
+          object pnlTestResp: TPanel
+            Left = 445
+            Height = 556
+            Top = 152
+            Width = 514
+            Align = alClient
+            BevelOuter = bvNone
+            ClientHeight = 556
+            ClientWidth = 514
+            TabOrder = 3
+            object lblRespStatus: TLabel
+              Left = 4
+              Height = 24
+              Top = 0
+              Width = 510
+              Align = alTop
+              AutoSize = False
+              BorderSpacing.Left = 4
+              Caption = 'Response'
+              Font.Style = [fsBold]
+              Layout = tlCenter
+              ParentFont = False
+            end
+            inline memResp: TSynEdit
+              Left = 0
+              Height = 532
+              Top = 24
+              Width = 514
+              Align = alClient
+              Font.Height = -13
+              Font.Name = 'Consolas'
+              Font.Pitch = fpFixed
+              Font.Quality = fqNonAntialiased
+              ParentColor = False
+              ParentFont = False
+              TabOrder = 0
+              Gutter.Width = 55
+              Gutter.MouseActions = <>
+              RightGutter.Width = 0
+              RightGutter.MouseActions = <>
+              Highlighter = synJSON
+              Keystrokes = <>
+              MouseActions = <>
+              MouseTextActions = <>
+              MouseSelActions = <>
+              Options = [eoAutoIndent, eoGroupUndo, eoHideRightMargin, eoScrollPastEol, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+              VisibleSpecialChars = [vscSpace, vscTabAtLast]
+              ReadOnly = True
+              ScrollBars = ssAutoBoth
+              SelectedColor.BackPriority = 50
+              SelectedColor.ForePriority = 50
+              SelectedColor.FramePriority = 50
+              SelectedColor.BoldPriority = 50
+              SelectedColor.ItalicPriority = 50
+              SelectedColor.UnderlinePriority = 50
+              SelectedColor.StrikeOutPriority = 50
+              BracketHighlightStyle = sbhsBoth
+              BracketMatchColor.Background = clNone
+              BracketMatchColor.Foreground = clNone
+              BracketMatchColor.Style = [fsBold]
+              FoldedCodeColor.Background = clNone
+              FoldedCodeColor.Foreground = clGray
+              FoldedCodeColor.FrameColor = clGray
+              MouseLinkColor.Background = clNone
+              MouseLinkColor.Foreground = clBlue
+              LineHighlightColor.Background = clNone
+              LineHighlightColor.Foreground = clNone
+              TabWidth = 2
+              inline SynLeftGutterPartList1: TSynGutterPartList
+                object SynGutterMarks1: TSynGutterMarks
+                  Width = 24
+                  MouseActions = <>
+                  MaxExtraMarksColums = 0
+                  Options = [sgmoDeDuplicateMarksOnOverflow]
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                end
+                object SynGutterLineNumber1: TSynGutterLineNumber
+                  Width = 15
+                  MouseActions = <>
+                  MarkupInfo.Background = clBtnFace
+                  MarkupInfo.Foreground = clNone
+                  DigitCount = 2
+                  ShowOnlyLineNumbersMultiplesOf = 1
+                  ZeroStart = False
+                  LeadingZeros = False
+                end
+                object SynGutterChanges1: TSynGutterChanges
+                  Width = 4
+                  MouseActions = <>
+                  ModifiedColor = 59900
+                  SavedColor = clGreen
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGreen
+                  MarkupInfo.FrameColor = 59900
+                end
+                object SynGutterSeparator1: TSynGutterSeparator
+                  Width = 2
+                  MouseActions = <>
+                  MarkupInfo.Background = clWhite
+                  MarkupInfo.Foreground = clGray
+                end
+                object SynGutterCodeFolding1: TSynGutterCodeFolding
+                  MouseActions = <>
+                  MarkupInfo.Background = clNone
+                  MarkupInfo.Foreground = clGray
+                  MouseActionsExpanded = <>
+                  MouseActionsCollapsed = <>
+                end
+              end
+            end
+          end
+        end
+        object tsGenerate: TTabSheet
+          Caption = 'Generation'
+          ClientHeight = 708
+          ClientWidth = 959
+          object pnlGenTop: TPanel
+            Left = 0
+            Height = 102
+            Top = 0
+            Width = 959
+            Align = alTop
+            BevelOuter = bvNone
+            ClientHeight = 102
+            ClientWidth = 959
+            TabOrder = 0
+            object lblLanguage: TLabel
+              Left = 8
+              Height = 15
+              Top = 13
+              Width = 55
+              Caption = 'Language:'
+            end
+            object cbLanguage: TComboBox
+              Left = 112
+              Height = 23
+              Top = 9
+              Width = 160
+              ItemHeight = 15
+              ItemIndex = 0
+              Items.Strings = (
+                'Pascal'
+                'Python'
+                'Java'
+                'Node.js'
+                'C#'
+                'PowerShell'
+                'VB.NET'
+              )
+              Style = csDropDownList
+              TabOrder = 0
+              Text = 'Pascal'
+              OnChange = cbLanguageChange
+            end
+            object imgLanguage: TImage
+              Left = 280
+              Height = 24
+              Top = 8
+              Width = 24
+              Center = True
+              ParentShowHint = False
+              ShowHint = True
+            end
+            object lblUnit: TLabel
+              Left = 8
+              Height = 15
+              Top = 43
+              Width = 76
+              Caption = 'Generated file:'
+            end
+            object edUnitFile: TEdit
+              Left = 112
+              Height = 23
+              Top = 39
+              Width = 792
+              Anchors = [akTop, akLeft, akRight]
+              TabOrder = 1
+              OnEditingDone = edUnitFileEditingDone
+            end
+            object btnUnitBrowse: TButton
+              Left = 908
+              Height = 23
+              Top = 39
+              Width = 36
+              Anchors = [akTop, akRight]
+              Caption = '...'
+              TabOrder = 2
+              OnClick = btnUnitBrowseClick
+            end
+            object btnGenerate: TBitBtn
+              Left = 104
+              Height = 25
+              Top = 68
+              Width = 170
+              Caption = 'Generate unit'
+              TabOrder = 3
+              OnClick = btnGenerateClick
+            end
+            object lblGenSummary: TLabel
+              Left = 290
+              Height = 15
+              Top = 74
+              Width = 650
+              Anchors = [akTop, akLeft, akRight]
+              AutoSize = False
+            end
+          end
+          inline memGenCode: TSynEdit
+            Left = 0
+            Height = 606
+            Top = 102
+            Width = 959
+            Align = alClient
+            Font.Height = -13
+            Font.Name = 'Consolas'
+            Font.Pitch = fpFixed
+            Font.Quality = fqNonAntialiased
+            ParentColor = False
+            ParentFont = False
+            TabOrder = 1
+            Gutter.Width = 55
+            Gutter.MouseActions = <>
+            RightGutter.Width = 0
+            RightGutter.MouseActions = <>
+            Highlighter = synPas
+            Keystrokes = <>
+            MouseActions = <>
+            MouseTextActions = <>
+            MouseSelActions = <>
+            Options = [eoAutoIndent, eoGroupUndo, eoHideRightMargin, eoScrollPastEol, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+            VisibleSpecialChars = [vscSpace, vscTabAtLast]
+            ReadOnly = True
+            ScrollBars = ssAutoBoth
+            SelectedColor.BackPriority = 50
+            SelectedColor.ForePriority = 50
+            SelectedColor.FramePriority = 50
+            SelectedColor.BoldPriority = 50
+            SelectedColor.ItalicPriority = 50
+            SelectedColor.UnderlinePriority = 50
+            SelectedColor.StrikeOutPriority = 50
+            BracketHighlightStyle = sbhsBoth
+            BracketMatchColor.Background = clNone
+            BracketMatchColor.Foreground = clNone
+            BracketMatchColor.Style = [fsBold]
+            FoldedCodeColor.Background = clNone
+            FoldedCodeColor.Foreground = clGray
+            FoldedCodeColor.FrameColor = clGray
+            MouseLinkColor.Background = clNone
+            MouseLinkColor.Foreground = clBlue
+            LineHighlightColor.Background = clNone
+            LineHighlightColor.Foreground = clNone
+            TabWidth = 2
+            inline SynLeftGutterPartList1: TSynGutterPartList
+              object SynGutterMarks1: TSynGutterMarks
+                Width = 24
+                MouseActions = <>
+                MaxExtraMarksColums = 0
+                Options = [sgmoDeDuplicateMarksOnOverflow]
+                MarkupInfo.Background = clBtnFace
+                MarkupInfo.Foreground = clNone
+              end
+              object SynGutterLineNumber1: TSynGutterLineNumber
+                Width = 15
+                MouseActions = <>
+                MarkupInfo.Background = clBtnFace
+                MarkupInfo.Foreground = clNone
+                DigitCount = 2
+                ShowOnlyLineNumbersMultiplesOf = 1
+                ZeroStart = False
+                LeadingZeros = False
+              end
+              object SynGutterChanges1: TSynGutterChanges
+                Width = 4
+                MouseActions = <>
+                ModifiedColor = 59900
+                SavedColor = clGreen
+                MarkupInfo.Background = clNone
+                MarkupInfo.Foreground = clGreen
+                MarkupInfo.FrameColor = 59900
+              end
+              object SynGutterSeparator1: TSynGutterSeparator
+                Width = 2
+                MouseActions = <>
+                MarkupInfo.Background = clWhite
+                MarkupInfo.Foreground = clGray
+              end
+              object SynGutterCodeFolding1: TSynGutterCodeFolding
+                MouseActions = <>
+                MarkupInfo.Background = clNone
+                MarkupInfo.Foreground = clGray
+                MouseActionsExpanded = <>
+                MouseActionsCollapsed = <>
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  object sbMain: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 837
+    Width = 1500
+    Panels = <>
+  end
+  object pnlBottom: TPanel
+    Left = 0
+    Height = 33
+    Top = 804
+    Width = 1500
+    Align = alBottom
+    BevelOuter = bvNone
+    BorderWidth = 4
+    ClientHeight = 33
+    ClientWidth = 1500
+    TabOrder = 3
+    object sbAbout: TSpeedButton
+      Left = 4
+      Height = 25
+      Hint = 'About'
+      Top = 4
+      Width = 25
+      Align = alLeft
+      ShowHint = True
+      ParentShowHint = False
+      OnClick = sbAboutClick
+    end
+    object Panel2: TPanel
+      Left = 29
+      Height = 25
+      Top = 4
+      Width = 16
+      Align = alLeft
+      BevelOuter = bvNone
+      TabOrder = 0
+    end
+    object sbColors: TSpeedButton
+      Left = 45
+      Height = 25
+      Hint = 'Editor colors'
+      Top = 4
+      Width = 25
+      Align = alLeft
+      ShowHint = True
+      ParentShowHint = False
+      OnClick = sbColorsClick
+    end
+    object Panel3: TPanel
+      Left = 70
+      Height = 25
+      Top = 4
+      Width = 16
+      Align = alLeft
+      BevelOuter = bvNone
+      TabOrder = 1
+    end
+    object sbOptions: TSpeedButton
+      Left = 86
+      Height = 25
+      Hint = 'Editor options'
+      Top = 4
+      Width = 25
+      Align = alLeft
+      ShowHint = True
+      ParentShowHint = False
+      OnClick = sbOptionsClick
+    end
+    object sbExit: TSpeedButton
+      Left = 1421
+      Height = 25
+      Top = 4
+      Width = 75
+      Align = alRight
+      Caption = 'Exit'
+      OnClick = sbExitClick
+    end
+  end
+  object dlgFolder: TSelectDirectoryDialog
+    Title = 'JSON files folder'
+    Left = 1040
+    Top = 200
+  end
+  object dlgSave: TSaveDialog
+    DefaultExt = '.md'
+    Filter = 'Markdown (*.md)|*.md|Text (*.txt)|*.txt|All files (*.*)|*.*'
+    Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
+    Left = 1120
+    Top = 200
+  end
+  object synPas: TSynPasSyn
+    Enabled = False
+    CompilerMode = pcmDelphi
+    NestedComments = False
+    TypeHelpers = True
+    StringMultilineMode = []
+    Left = 960
+    Top = 256
+  end
+  object synJava: TSynJavaSyn
+    DefaultFilter = 'Java Files (*.java)|*.java'
+    Enabled = False
+    Left = 960
+    Top = 312
+  end
+  object synPython: TSynPythonSyn
+    DefaultFilter = 'Python Files (*.py)|*.py'
+    Enabled = False
+    Left = 960
+    Top = 368
+  end
+  object synJScript: TSynJScriptSyn
+    DefaultFilter = 'JavaScript Files (*.js;*.mjs)|*.js;*.mjs'
+    Enabled = False
+    Left = 960
+    Top = 424
+  end
+  object synCS: TSynCSSyn
+    DefaultFilter = 'C# Files (*.cs)|*.cs'
+    Enabled = False
+    Left = 960
+    Top = 480
+  end
+  object synVB: TSynVBSyn
+    DefaultFilter = 'Visual Basic Files (*.vb)|*.vb'
+    Enabled = False
+    Left = 960
+    Top = 592
+  end
+  object synJSON: TSynJSONSyn
+    DefaultFilter = 'JSON Files (*.json)|*.json'
+    Enabled = False
+    Left = 960
+    Top = 200
+  end
+  object ilIcons: TImageList
+    Left = 880
+    Top = 200
+  end
+  object dlgUnit: TSaveDialog
+    Title = 'Generated file (an existing file is read back)'
+    DefaultExt = '.pas'
+    FileName = 'uCockpitItsmApi.pas'
+    Filter = 'Pascal unit (*.pas)|*.pas'
+    Left = 1200
+    Top = 200
+  end
+  object pmColors: TPopupMenu
+    Left = 832
+    Top = 200
+    object mnuColorJSON: TMenuItem
+      Tag = 1
+      Caption = 'JSON'
+      OnClick = mnuColorClick
+    end
+    object mnuColorPascal: TMenuItem
+      Tag = 2
+      Caption = 'Pascal'
+      OnClick = mnuColorClick
+    end
+    object mnuColorJava: TMenuItem
+      Tag = 3
+      Caption = 'Java'
+      OnClick = mnuColorClick
+    end
+    object mnuColorPython: TMenuItem
+      Tag = 4
+      Caption = 'Python'
+      OnClick = mnuColorClick
+    end
+    object mnuColorJScript: TMenuItem
+      Tag = 5
+      Caption = 'JavaScript'
+      OnClick = mnuColorClick
+    end
+    object mnuColorCSharp: TMenuItem
+      Tag = 6
+      Caption = 'C#'
+      OnClick = mnuColorClick
+    end
+    object mnuColorPowerShell: TMenuItem
+      Tag = 7
+      Caption = 'PowerShell'
+      OnClick = mnuColorClick
+    end
+    object mnuColorVB: TMenuItem
+      Tag = 8
+      Caption = 'VB.NET'
+      OnClick = mnuColorClick
+    end
+  end
+end

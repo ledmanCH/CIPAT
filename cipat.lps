@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Publication"/>
+    <Units>
+      <Unit>
+        <Filename Value="cipat.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="30" Y="16"/>
+        <UsageCount Value="78"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uMain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="907"/>
+        <CursorPos X="21" Y="920"/>
+        <UsageCount Value="78"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uApiDiff.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="78"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uApiGen.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1527"/>
+        <CursorPos X="29" Y="1568"/>
+        <UsageCount Value="78"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uCockpitItsmCore.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1189"/>
+        <CursorPos Y="1211"/>
+        <UsageCount Value="77"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\SynDialogs\syncolordialogform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSynColorDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SynColorDialogForm"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4"/>
+        <CursorPos X="14" Y="30"/>
+        <UsageCount Value="76"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\SynDialogs\syneditoptionsdialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fmEditorOptionsDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SynEditOptionsDialog"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="492"/>
+        <CursorPos X="14" Y="509"/>
+        <UsageCount Value="76"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\SynDialogs\syneditsettings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SynEditSettings"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="226"/>
+        <CursorPos X="21"/>
+        <UsageCount Value="37"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uabout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uAbout"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="43"/>
+        <CursorPos X="20" Y="63"/>
+        <UsageCount Value="31"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ueditorsettings.pas"/>
+        <UnitName Value="uEditorSettings"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="21"/>
+        <UsageCount Value="38"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="2">
+      <Position>
+        <Filename Value="uMain.pas"/>
+        <Caret Line="1442" Column="41" TopLine="1381"/>
+      </Position>
+      <Position>
+        <Filename Value="uMain.pas"/>
+        <Caret Line="841" Column="46" TopLine="824"/>
+      </Position>
+      <Position>
+        <Filename Value="uMain.pas"/>
+        <Caret Line="951" Column="55" TopLine="934"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <Title Value="CIPAT - Cockpit ITSM Public API toolkit"/>
+      <Scaled Value="True"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <Resources Count="30">
+        <Resource_0 FileName="Images/Png/16x16/documents-4-filled.png" Type="RCDATA" ResourceName="DOCUMENTS_4_FILLED"/>
+        <Resource_1 FileName="Images/Png/16x16/file-compare-by-content.png" Type="RCDATA" ResourceName="FILE_COMPARE_BY_CONTENT"/>
+        <Resource_2 FileName="Images/Png/16x16/history.png" Type="RCDATA" ResourceName="HISTORY"/>
+        <Resource_3 FileName="Images/Png/16x16/save-filled.png" Type="RCDATA" ResourceName="SAVE_FILLED"/>
+        <Resource_4 FileName="Images/Png/16x16/execute.png" Type="RCDATA" ResourceName="EXECUTE"/>
+        <Resource_5 FileName="Images/Png/16x16/select-none.png" Type="RCDATA" ResourceName="SELECT_NONE"/>
+        <Resource_6 FileName="Images/Png/16x16/test-filled.png" Type="RCDATA" ResourceName="TEST_FILLED"/>
+        <Resource_7 FileName="Images/Png/16x16/clouds-help-filled.png" Type="RCDATA" ResourceName="CLOUDS_HELP_FILLED"/>
+        <Resource_8 FileName="Images/Png/16x16/clouds-execute-filled.png" Type="RCDATA" ResourceName="CLOUDS_EXECUTE_FILLED"/>
+        <Resource_9 FileName="Images/Png/16x16/document-gear-filled.png" Type="RCDATA" ResourceName="DOCUMENT_GEAR_FILLED"/>
+        <Resource_10 FileName="Images/Png/16x16/book-open.png" Type="RCDATA" ResourceName="BOOK_OPEN"/>
+        <Resource_11 FileName="Images/Png/16x16/define-properties.png" Type="RCDATA" ResourceName="DEFINE_PROPERTIES"/>
+        <Resource_12 FileName="uCockpitItsmCore.pas" Type="RCDATA" ResourceName="UCOCKPITITSMCORE"/>
+        <Resource_13 FileName="Images/Png/16x16/button-info.png" Type="RCDATA" ResourceName="BUTTON_INFO"/>
+        <Resource_14 FileName="Images/Png/16x16/styles.png" Type="RCDATA" ResourceName="STYLES"/>
+        <Resource_15 FileName="Images/Png/16x16/window-text-tools-filled.png" Type="RCDATA" ResourceName="WINDOW_TEXT_TOOLS_FILLED"/>
+        <Resource_16 FileName="Images/Png/16x16/exit.png" Type="RCDATA" ResourceName="EXIT"/>
+        <Resource_17 FileName="CockpitItsmCore.java" Type="RCDATA" ResourceName="COCKPITITSMCORE_JAVA"/>
+        <Resource_18 FileName="cockpit_itsm_core.py" Type="RCDATA" ResourceName="COCKPITITSMCORE_PY"/>
+        <Resource_19 FileName="cockpit-itsm-core.mjs" Type="RCDATA" ResourceName="COCKPITITSMCORE_JS"/>
+        <Resource_20 FileName="Images/Png/24x24/lang-delphi.png" Type="RCDATA" ResourceName="LANG_DELPHI"/>
+        <Resource_21 FileName="Images/Png/24x24/lang-python.png" Type="RCDATA" ResourceName="LANG_PYTHON"/>
+        <Resource_22 FileName="Images/Png/24x24/lang-java.png" Type="RCDATA" ResourceName="LANG_JAVA"/>
+        <Resource_23 FileName="Images/Png/24x24/lang-nodejs.png" Type="RCDATA" ResourceName="LANG_NODEJS"/>
+        <Resource_24 FileName="CockpitItsmCore.cs" Type="RCDATA" ResourceName="COCKPITITSMCORE_CS"/>
+        <Resource_25 FileName="CockpitItsmCore.ps1" Type="RCDATA" ResourceName="COCKPITITSMCORE_PS"/>
+        <Resource_26 FileName="Images/Png/24x24/lang-csharp.png" Type="RCDATA" ResourceName="LANG_CSHARP"/>
+        <Resource_27 FileName="Images/Png/24x24/lang-powershell.png" Type="RCDATA" ResourceName="LANG_POWERSHELL"/>
+        <Resource_28 FileName="CockpitItsmCore.vb" Type="RCDATA" ResourceName="COCKPITITSMCORE_VB"/>
+        <Resource_29 FileName="Images/Png/24x24/lang-vb.png" Type="RCDATA" ResourceName="LANG_VB"/>
+      </Resources>
+    </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <RevisionNr Value="2026"/>
+      <BuildNr Value="1103"/>
+      <StringTable CompanyName="Stéphane CLAUS" FileDescription="Cockpit ITSM Public API toolkit" InternalName="CIPAT.exe" LegalCopyright="©2026 Stéphane CLAUS" LegalTrademarks="©2026 Stéphane CLAUS" OriginalFilename="CIPAT.exe" ProductName="Cockpit ITSM Public API toolkit" ProductVersion="1.0"/>
+    </VersionInfo>
+    <BuildModes>
+      <Item Name="Default" Default="True"/>
+      <Item Name="Publication">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="cipat"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../SynDialogs"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <SyntaxMode Value="Delphi"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+              <DebugInfoType Value="dsDwarf3"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
+    <RequiredPackages>
+      <Item>
+        <PackageName Value="SynEditDsgn"/>
+      </Item>
+      <Item>
+        <PackageName Value="ExtraHighlighters"/>
+      </Item>
+      <Item>
+        <PackageName Value="SynEdit"/>
+      </Item>
+      <Item>
+        <PackageName Value="laz.virtualtreeview_package"/>
+      </Item>
+      <Item>
+        <PackageName Value="LCL"/>
+      </Item>
+    </RequiredPackages>
+    <Units>
+      <Unit>
+        <Filename Value="cipat.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uMain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uApiDiff.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uApiGen.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uCockpitItsmCore.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../SynDialogs/syncolordialogform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSynColorDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SynColorDialogForm"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../SynDialogs/syneditoptionsdialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fmEditorOptionsDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SynEditOptionsDialog"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../SynDialogs/syneditsettings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SynEditSettings"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uabout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uAbout"/>
+      </Unit>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="cipat"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../SynDialogs"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <SyntaxMode Value="Delphi"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf3"/>
+      </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions>
+      <Item>
+        <Name Value="ECockpitItsmError"/>
+      </Item>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
